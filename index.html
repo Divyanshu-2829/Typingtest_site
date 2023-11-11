@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #323437;
+        }
+
+        .navbar {
+            /*border: 2px solid red; */
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+
+        .type {
+            position: relative;
+            top: 150px;
+            /*border: 2px solid red; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .foot {
+            position: absolute;
+            bottom: 0px;
+            left: 90em;
+            /*border: 2px solid red; */
+            font-size: 6px;
+            color: bisque;
+            margin: auto;
+        }
+
+        #typing_window {
+            /*border: 2px solid red; */
+            word-break: break-all;
+            user-select: none;
+            font-size: 1.5rem;
+            line-height: 2.5rem;
+            margin: 0.37rem;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 550;
+            caret-color: #e2b714;
+            text-align: center;
+        }
+
+        .ref {
+            color: #646669;
+        }
+
+        .right {
+            color: #e2b714;
+        }
+
+        .wrong {
+            color: #ca4754;
+        }
+
+        .extra {
+            color: #7e2a33;
+        }
+
+        .missed {
+            color: #646669;
+            border-bottom: 0.09em solid #ca4754;
+            padding-bottom: 0em;
+        }
+
+        #rstbtn {
+            color: white;
+            margin: 0.7rem auto 0;
+            font-size: xx-large;
+            background-color: transparent;
+            border-style: none;
+            border-radius: 14px;
+            padding-left: 20px;
+            padding-right: 12px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            /* text-align: center; */
+            cursor: pointer;
+        }
+
+        #rstbtn:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+            /* If you want dots under the hoverable text */
+        }
+
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: rgb(24, 23, 23);
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            position: absolute;
+            z-index: 1;
+            font-size: 50%;
+            width: 120px;
+            top: 100%;
+            left: 50%;
+            margin-left: -80px;
+            margin-top: 16px;
+
+        }
+
+        #rstbtn:hover .tooltip .tooltiptext {
+            visibility: visible;
+        }
+
+        #iconfeed:hover .tooltip .tooltiptext {
+            visibility: visible;
+        }
+
+        #iconfeed {
+            display: inline-block;
+            margin-left: 40px;
+            margin-right: 0px;
+            border: 2px solid transparent;
+            margin-top: 9px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 9px;
+            padding-right: 5px;
+            border-radius: 10px;
+
+            filter: invert(40%);
+        }
+
+        #iconabout {
+            display: inline-block;
+            margin-left: 0px;
+            margin-right: 10px;
+            border: 2px solid transparent;
+            margin-top: 9px;
+            padding-top: 3px;
+            padding-bottom: 0px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 10px;
+
+            filter: invert(50%);
+        }
+
+        #iconsettings {
+            display: inline-block;
+            margin-left: 0px;
+            margin-right: 10px;
+            border: 2px solid transparent;
+            margin-top: 9px;
+            padding-top: 3px;
+            padding-bottom: 0px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 10px;
+
+            position: relative;
+            left: 60em;
+            filter: invert(50%);
+        }
+
+        #iconfeed:hover,
+        #iconabout:hover,
+        #iconsettings:hover {
+            background-color: #51525ace;
+            filter: invert(0%);
+        }
+
+        #iconabout {
+            /* margin-left: 40px; */
+            margin-right: 10px;
+        }
+
+
+
+        #setbtn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+        }
+
+        #iconglobe {
+            filter: invert(40%);
+        }
+
+        .props {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .parachange {
+            /*border: 2px solid red; */
+            background-color: #323437;
+            color: #646669;
+            margin-right: 10px;
+            margin-left: 10px;
+            position: relative;
+            right: 50px;
+        }
+
+        .parachange:hover {
+            color: white;
+            cursor: pointer;
+        }
+
+        .parachange:hover #iconglobe {
+            filter: invert(100%);
+        }
+
+        .timer {
+            color: yellow;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 23px;
+            position: relative;
+            right: 18.5em;
+            font-weight: bold;
+        }
+
+        .wpm {
+            color: yellow;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 23px;
+            position: relative;
+            right: 16.5em;
+            font-weight: bold;
+        }
+
+
+        /* ******************************************************************* */
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 54px;
+            height: 28px;
+            left: 5px;
+            top: 3.5px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 19px;
+            width: 19px;
+            left: 5px;
+            bottom: 5px;
+            background-color: #646669;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #f7871f;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #f7871f;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        #inputcheck:checked .props .wpm {
+            /* display: none; */
+            visibility: hidden;
+        }
+
+        #inputcheck:not(:checked) .props .wpm {
+            visibility: visible;
+            /* display: inline; */
+        }
+
+        /* ******************************************************************* */
+
+        .balloonBox{
+        
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            width: 300px;
+            height: 350px;
+            border-radius: 14px;
+            /*border: 2px solid red; */
+            visibility: hidden; 
+            
+            position: fixed;
+            right: 490px;
+            top: 170px;
+        
+            z-index: 2;
+
+            /* To clarify: this selector selects all elements (*)...
+                                                   ...that are children of the body (body > *)
+                                                   ...and do not have ID loading (*:not(#loading)). */
+        }
+
+        /* body>*:not(.balloonBox) #timebtn:focus{
+            background-color: #323437;
+            filter: blur(4px);
+            visibility: visible;
+            border: 2px solid yellow;
+            visibility: visible;
+        } */
+        #timebtn, #langbtn
+        {
+            position: static;
+        }
+        #timebtn:focus .balloonBox
+        {
+            visibility: visible;
+            /* box-shadow: 5px, 10px, 8px, 10px, red; */
+            background-color:#646669;
+        }
+        #langbtn:focus .balloonBox
+        {
+            visibility: visible;
+            /* box-shadow: 5px, 10px, 8px, 10px, red; */
+            background-color:#646669;
+        }
+        .bBtime
+        {
+            /* border: 2px solid red; */
+            cursor: pointer;
+            font-size: 25px;
+            font-weight: bold;
+            color:#f7871f;
+            margin-top: 12px;
+            background-color: #646669;
+            border: none;
+            outline: none;
+            /* z-index: 1; */
+        }
+
+        .bBtime:hover
+        {
+            background-color: #323437;
+            color: bisque;
+
+        }
+
+        .balloonBox:hover
+        {
+            cursor: auto;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+
+        <div id="logonav" style="display: inline-block;">
+            <img src="download.png" alt="" width="50px" height="50px">
+            <label>Typing Test</label>
+        </div>
+
+        <div id="links" style="display: inline-block;">
+            <div id="iconfeed" style="display: inline-block;">
+                <a href="feedback/feedback.html"> <img src="icons/feedback.png" alt="" width="25px" height="25px"></div> </a>
+            <div class="tooltip">
+                <span class="tooltiptext">Feedback</span>
+            </div>
+
+            <div< id="iconabout">
+                <a href="aboutus.html"> <img src="icons/info.png" alt="" width="25px" height="25px"> </a>
+            </div>
+            <div id="iconsettings"><img src="icons/settings.png" alt="" width="25px" height="25px"></div>
+        </div>
+
+    </div>
+
+    <script src="texts.js">
+    </script>
+
+    <div class="type">
+        <div id="setbtn">
+            <div class="props">
+                <span class="timer" id="setTime">0</span>
+                <span class="wpm" id="wpmcounter">0</span><span class="wpm">&nbsp;wpm</span>
+                <button type="button" class="parachange" id="langbtn"><img src="icons/globe.png" alt="" width="22px" height="22px"
+                        id="iconglobe"> <span
+                        style="display: inline-block;position: relative; bottom: 5px; font-size: 17px; font-family: 'Roboto Mono', monospace;">&nbsp;english</span>
+                    
+                        <div class="balloonBox">
+                            <input type="button" value="Alice in Wonderland" class="bBtime" id="eng" 
+                                   onmousedown = "Test.set_test_string(english_alice);">
+                            <input type="button" value="Secret Garden" class="bBtime" id="fr" 
+                                   onmousedown="Test.set_test_string(english_secret_garden);">
+                            <input type="button" value="Animal Farm" class="bBtime" id="esp"
+                                    onmousedown="Test.set_test_string(english_animal_farm);">
+                            <input type="button" value="Call of the Wild" class="bBtime" id="ity"
+                                    onmousedown="Test.set_test_string(english_call_of_the_wild);">
+                            <input type="button" value="Twelve Thousand.." class="bBtime" id="ger"
+                                    onmousedown="Test.set_test_string(english_jules_verne);">
+                            <input type="button" value="French" class="bBtime" id="css"
+                                    onmousedown="Test.set_test_string(french_text);">
+                            <input type="button" value="Spanish" class="bBtime" id="c"
+                                    onmousedown="Test.set_test_string(spanish_text);">
+                        
+                        </div>
+                    </button>
+
+            </div>
+            <div class="props">
+                <button type="button" class="parachange" id="timebtn"><img src="icons/timer.png" alt="" width="22px"
+                        height="22px" id="iconglobe"><span
+                        style="display: inline-block;position: relative; bottom: 5px; font-size: 17px; font-family: 'Roboto Mono', monospace;">&nbsp;time</span>
+
+                    
+                    <div class="balloonBox">
+						<input type="button" value="15"  class="bBtime" id="bB15"  onmousedown="Test.set_test_mode('timed', 15);">
+						<input type="button" value="30"  class="bBtime" id="bB30"  onmousedown="Test.set_test_mode('timed', 30);">
+                        <input type="button" value="60"  class="bBtime" id="bB60"  onmousedown="Test.set_test_mode('timed', 60);">
+                        <input type="button" value="120" class="bBtime" id="bB120" onmousedown="Test.set_test_mode('timed', 120);">
+                        <input type="button" value="180" class="bBtime" id="bB180" onmousedown="Test.set_test_mode('timed', 180);">
+                        <input type="button" value="240" class="bBtime" id="bB240" onmousedown="Test.set_test_mode('timed', 240);">
+                        <input type="button" value="300" class="bBtime" id="bB300" onmousedown="Test.set_test_mode('timed', 300);">
+                    
+                    </div>
+                </button>
+            </div>
+
+            <!-- <div>
+                <label class="switch">
+                    <input type="checkbox" id="inputcheck">
+                    <span class="slider round"></span>
+                </label>
+            </div> -->
+        </div>
+        <div id="typing_window" contenteditable spellcheck="false"></div>
+        <button id="rstbtn" type="button">↻
+            <div class="tooltip">
+                <span class="tooltiptext">Restart Test</span>
+            </div>
+        </button>
+
+    </div>
+
+    <div class="foot">
+        <h1>&copy; 2022 monkeytype. All rights reserved</h1>
+		<div id="myPlot" style="width:1000px"></div>
+    </div>
+
+
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script>
+        function setTimerDisplay(seconds){
+            let Timer = document.getElementById("setTime");
+			
+			let minutes_part = Math.floor(seconds/60);
+			let seconds_part = seconds % 60;
+
+            Timer.innerHTML = minutes_part + ":" + ((seconds_part < 10) ? "0" : "") + seconds_part;
+            
+        }
+        setTimerDisplay(400); 
+	</script>   
+
+	<script src="script.js">
+    </script>
+
+</body>
+
+</html>

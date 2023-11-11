@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>login and register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <style>
+        body {
+            /* background-image: linear-gradient(to right,rgb(82, 39, 39),rgb(178, 131, 139),rgb(82, 39, 39)); */
+            /* background-image: linear-gradient(to right, #011926, #02344e, black); */
+            background-image: url(bg1.jpeg);
+            font-family: 'Ubuntu', sans-serif;  
+        }
+
+        .b {
+            width: 240px;
+            height: 40px;
+            background-image: linear-gradient(#00e980, #245c69);
+            border: none;
+            margin-top: 30px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #fff;
+            transition: 0.4s ease;
+        }
+
+        .form {
+            margin-top: 60px;
+            margin-left: 140px;
+            width: 250px;
+            height: 380px;
+            background-image: linear-gradient(to top, #323437, black);
+            position: absolute;
+            top: 38px;
+            left: 800px;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 2px 2px 10px #616161;
+        }
+
+        .form h2 {
+            width: 220px;
+            font-family: sans-serif;
+            text-align: center;
+            color: #f7871f;
+            font-size: 22px;
+            background-color: transparent;
+            /* border-radius: 10px; */
+            margin: 2px;
+            padding: 8px;
+            border-bottom: 2px solid red;
+        }
+
+        .form input {
+            width: 240px;
+            height: 15px;
+            background: transparent;
+            border-bottom: 1px solid red;
+            border-top: none;
+            border-right: none;
+            border-left: none;
+            color: #fff;
+            font-size: 15px;
+            letter-spacing: 1px;
+            margin-top: 30px;
+            font-family: sans-serif;
+        }
+
+        .form input:focus {
+            outline: none;
+        }
+
+        ::placeholder {
+            color: #fff;
+            font-family: Arial;
+        }
+
+        .b:hover {
+            background: #fff;
+            background-image: linear-gradient(#00e98062, #2b7e91);
+            box-shadow: 0.5px 0.5px 8px #ffffff;
+        }
+
+        .b a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .form .account {
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 17px;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .form .account a {
+            text-decoration: none;
+            color: red;
+        }
+
+        .log {
+            padding-top: 15px;
+            padding-bottom: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .icons a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .icons ion-icon {
+            margin: auto;
+            color: white;
+            font-size: 30px;
+            padding-left: 14px;
+            padding-top: 0px;
+            transition: 0.3s ease;
+        }
+
+        .icons ion-icon:hover {
+            color: #00e980;
+        }
+
+        .container {
+            margin-top: 100px;
+            margin-left: 14px;
+            max-width: 700px;
+            width: 100%;
+            padding: 25px 30px;
+            border-radius: 25px;
+            background-image: linear-gradient(to top, #323437, black);
+            box-shadow: 2px 2px 10px #616161;
+        }
+
+        .container .heading {
+            color: white;
+            font-size: 25px;
+            font-weight: 500;
+            position: relative;
+            text-align: center;
+            padding: 0 0 20px 0;
+        }
+
+        .container .heading::before {
+            content: '';
+            position: absolute;
+            height: 3px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-image: linear-gradient(red, black);
+        }
+
+        .container form .cd {
+            margin-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        form .cd .cb {
+            width: calc(100% /2 - 20px);
+            margin-bottom: 15px;
+        }
+
+        .cd .cb .datails {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .cd .cb input {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid pink;
+            padding-left: 15px;
+            font-size: 16px;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+        }
+
+        form .cf .ct {
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+            border-bottom: 2px solid;
+        }
+
+        form .cf .category {
+            color: white;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        form .button {
+            text-align: center;
+        }
+
+        form .button input {
+            padding: 10px 0;
+            margin-top: 10px;
+            height: 100%;
+            width: 50%;
+            outline: none;
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 5px;
+            letter-spacing: 1px;
+            background-image: linear-gradient(#00e980, #245c69);
+        }
+
+        form .button input:hover {
+            background-image: linear-gradient(#00e98062, #2b7e91);
+            box-shadow: 0.5px 0.5px 8px #ffffff;
+        }
+
+        .icons
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .vl
+        {
+            /* display: inline-block; */
+            position: absolute;
+            left: 65%;
+            border-left: 3px solid #ca4754;
+            height: 500px;
+            top: 10%;
+        }
+
+        input[type="text"], input[type="email"], input[type="phone"], input[type="password"]
+        {
+            background-color:#323437;
+            caret-color: #00e980;
+            color: #00e980;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form">
+        <h2>❮ Login ❯</h2>
+		<form action="login.php" method="post">
+        	<input type="email" placeholder="username">
+        	<input type="password" placeholder="password ">
+	        <div class="button">
+                <input type="submit" value="Registration">
+            </div>
+        </form>
+
+        <p class="account">Don't have an account<br>
+            <a href="#">Sign up </a> here</a>
+        </p>
+        <p class="log">Log in with</p>
+
+        <div class="icons">
+            <a href="#">
+                <ion-icon name="logo-google"></ion-icon>
+            </a>
+            <a href="#">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#">
+                <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#">
+                <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+        </div>
+    </div>
+
+    <div class="vl"></div>
+
+    <div class="container">
+        <div class="heading">❮ registration ❯</div>
+        <form action="register.php" method="post">
+            <div class="cd">
+                <div class="cb">
+                    <span class="details" style="color:white;">Full Name</span>
+                    <input type="text" name="name" placeholder="Enter your Name">
+                </div>
+                <div class="cb">
+                    <span class="details" style="color:white;">Username</span>
+                    <input type="text" name="username" placeholder="Enter Username">
+                </div>
+                <div class="cb">
+                    <span class="details" style="color:white;">Email</span>
+                    <input type="email" name="email" placeholder="Enter your Email">
+                </div>
+                <div class="cb">
+                    <span class="details" style="color:white;">Phone Number</span>
+                    <input type="phone" name="phone" placeholder="phone no.">
+                </div>
+                <div class="cb">
+                    <span class="details" style="color:white;">Password</span>
+                    <input type="password" name="password" placeholder="Enter your Password">
+                </div>
+                <div class="cb">
+                    <span class="details" style="color:white;">Confirm Password</span>
+                    <input type="password" name="password-confirm" placeholder="confirm password">
+                </div>
+            </div>
+            <!-- <div class="cf">
+                <span class="ct">Gender</span>
+                <div class="category">
+                    <input type="radio" name="gender">Male
+                    <input type="radio" name="gender">Female
+                    <input type="radio" name="gender">Other
+                </div>
+            </div> -->
+            <div class="button">
+                <input type="submit" value="Registration">
+            </div>
+        </form>
+    </div>
+
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+
+</html>

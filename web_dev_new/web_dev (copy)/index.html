@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #323437;
+        }
+
+        .navbar {
+            /* border: 2px solid red; */
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+
+        #logonav
+        {
+            margin-left: 35px;
+        }
+        .type {
+            position: relative;
+            top: 75px;
+            /* border: 2px solid red; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .foot {
+            position: absolute;
+            bottom: 0px;
+            left: 28%;
+            /* border: 2px solid red; */
+            font-size: 6px;
+            color: bisque;
+            margin: auto;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        #typing_window {
+            outline: none;
+            word-break: break-all;
+            user-select: none;
+            font-size: 1.5rem;
+            line-height: 2.5rem;
+            margin: 0.37rem;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 550;
+            caret-color: #e2b714;
+            text-align: center;
+        }
+
+        .ref {
+            color: #646669;
+        }
+
+        .right {
+            color: #e2b714;
+        }
+
+        .wrong {
+            color: #ca4754;
+        }
+
+        .extra {
+            color: #7e2a33;
+        }
+
+        .missed {
+            color: #646669;
+            border-bottom: 0.09em solid #ca4754;
+            padding-bottom: 0em;
+        }
+
+        #rstbtn {
+            color: white;
+            margin: 0.7rem auto 0;
+            font-size: xx-large;
+            background-color: transparent;
+            border-style: none;
+            border-radius: 14px;
+            padding-left: 20px;
+            padding-right: 12px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            cursor: pointer;
+        }
+
+        #rstbtn:hover {
+            background-color:cadetblue;
+            color: black;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+            /* If you want dots under the hoverable text */
+        }
+
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: rgb(24, 23, 23);
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            position: absolute;
+            z-index: 1;
+            font-size: 50%;
+            width: 120px;
+            top: 100%;
+            left: 50%;
+            margin-left: -80px;
+            margin-top: 16px;
+
+        }
+
+        #rstbtn:hover .tooltip .tooltiptext {
+            visibility: visible;
+        }
+
+        #iconfeed:hover .tooltip .tooltiptext {
+            visibility: visible;
+        }
+
+        #iconfeed {
+            display: inline-block;
+            margin-left: 40px;
+            margin-right: 0px;
+            border: 2px solid transparent;
+            margin-top: 27px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 9px;
+            padding-right: 5px;
+            border-radius: 10px;
+
+            filter: invert(40%);
+        }
+
+        #iconabout {
+            display: inline-block;
+            margin-left: 0px;
+            margin-right: 10px;
+            border: 2px solid transparent;
+            margin-top: 9px;
+            padding-top: 3px;
+            padding-bottom: 0px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 10px;
+
+            filter: invert(50%);
+        }
+
+        #iconsettings {
+            display: inline-block;
+            margin-left: 0px;
+            margin-right: 10px;
+            border: 2px solid transparent;
+            margin-top: 9px;
+            padding-top: 3px;
+            padding-bottom: 0px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 10px;
+
+            position: relative;
+            left: 51em;
+            filter: invert(50%);
+        }
+
+        #iconfeed:hover, #iconabout:hover, #iconsettings:hover {
+            background-color: #51525ace;
+            filter: invert(0%);
+        }
+
+        #iconabout {
+            /* margin-left: 40px; */
+            margin-right: 10px;
+        }
+
+
+
+        #setbtn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+        }
+
+        #iconglobe {
+            filter: invert(40%);
+        }
+
+        .props {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .parachange {
+            /* border: 2px solid red; */
+            background-color: #323437;
+            color: #646669;
+            margin-right: 10px;
+            margin-left: 10px;
+            position: relative;
+            right: 50px;
+            border: none;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 5px;
+            
+        }
+
+        #langbtn:hover {
+            color: white;
+            cursor: pointer;
+            border-radius: 14px;
+            background-color:#ca4754;
+        }
+        #timebtn:hover {
+            color: white;
+            cursor: pointer;
+            border-radius: 14px;
+            background-color:#f7871f;
+        }
+
+        .parachange:hover #iconglobe {
+            filter: invert(100%);
+        }
+
+        .timer {
+            color: yellow;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 23px;
+            position: relative;
+            right: 18.5em;
+            font-weight: bold;
+        }
+
+        .wpm {
+            color: yellow;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 23px;
+            position: relative;
+            right: 16.5em;
+            font-weight: bold;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 54px;
+            height: 28px;
+            left: 5px;
+            top: 3.5px;
+        }
+
+        .balloonBox{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 300px;
+            height: 350px;
+            border-radius: 14px;
+            /* border: 2px solid red; */
+            visibility: hidden;
+            position: fixed;
+            right: 490px;
+            top: 170px;
+        }
+
+        #timebtn, #langbtn
+        {
+            position: static;
+        }
+        #timebtn:focus .balloonBox
+        {
+            visibility: visible;
+            /* box-shadow: 5px, 10px, 8px, 10px, red; */
+            background-color:#646669;
+            backdrop-filter: blur(5px);
+        }
+        #langbtn:focus .balloonBox
+        {
+            visibility: visible;
+            /* box-shadow: 5px, 10px, 8px, 10px, red; */
+            background-color:#646669;
+            backdrop-filter: blur(55px);
+        }
+        .bBtime
+        {
+            /* border: 2px solid red; */
+            cursor: pointer;
+            font-size: 25px;
+            font-weight: bold;
+            color:#f7871f;
+            margin-top: 12px;
+            background-color: #646669;
+            border: none;
+            outline: none;
+            /* z-index: 1; */
+        }
+
+        .bBtime:hover
+        {
+            background-color: #323437;
+            color: bisque;
+            opacity: 1;
+
+        }
+
+        .balloonBox:hover
+        {
+            cursor: auto;
+        }
+
+        #loginbtn
+        {
+            display: inline-block;
+            position: relative;
+            bottom: 8px;
+            left: 800px;
+            border-radius: 10px;
+            font-size: 18px;
+            width: 90px;
+            height: 33px;
+            border: none;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+        
+        #loginbtn:hover
+        {
+            cursor: pointer;
+            background: rgb(1,181,234);
+            background: linear-gradient(90deg, rgba(1,181,234,1) 16%, rgba(9,9,121,1) 69%);
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+        }
+
+        .foot h1{
+            display: inline-block;
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+
+        #myPlot
+        {
+            position: absolute;
+            bottom: -10%;
+            left: 150px;  
+            color: white;
+
+            backdrop-filter: blur(10px);
+            /* border: 2px solid red; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+
+        <div id="logonav" style="display: inline-block;">
+            <a href="index.html"><img src="final_logo.png" alt="" width="120px" height="120px"></a>
+        </div>
+
+        <div id="links" style="display: inline-block;">
+            <div id="iconfeed" style="display: inline-block;">
+            	<a href="http://localhost/johann/feedback/test1.php">
+            		<img src="icons/feedback.png" alt="" width="35px" height="35px">
+            	</a>
+            </div>
+            <div class="tooltip">
+                <span class="tooltiptext">Feedback</span>
+            </div>
+
+            <div id="iconabout">
+            	<a href="aboutus.html"> <img src="icons/info.png" alt="" width="30px" height="30px"> </a>
+            </div>
+        
+            <button id="loginbtn" onclick="window.location.href = 'http://localhost/johann/login.html';">Login</button>
+          
+            <div id="iconsettings"><img src="icons/settings.png" alt="" width="25px" height="25px"></div>
+        </div>
+
+    </div>
+
+    <script src="texts.js">
+    </script>
+
+    <div class="type">
+        <div id="setbtn">
+            <div class="props">
+                <span class="timer" id="setTime">0</span>
+                <span class="wpm" id="wpmcounter">0</span><span class="wpm">&nbsp;wpm</span>
+                <button type="button" class="parachange" id="langbtn"><img src="icons/globe.png" alt="" width="22px" height="22px"
+                        id="iconglobe"> <span style="display: inline-block;position: relative; bottom: 5px; font-size: 17px; font-family: 'Roboto Mono', monospace;" id="spanLang">&nbsp;english</span>
+                    
+                        <div class="balloonBox">
+                            <input type="button" value="Alice in Wonderland" class="bBtime" id="eng" 
+                                   onmousedown = "Test.set_test_string(english_alice);">
+                            <input type="button" value="Secret Garden" class="bBtime" id="fr" 
+                                   onmousedown="Test.set_test_string(english_secret_garden);">
+                            <input type="button" value="Animal Farm" class="bBtime" id="esp"
+                                    onmousedown="Test.set_test_string(english_animal_farm);">
+                            <input type="button" value="Call of the Wild" class="bBtime" id="ity"
+                                    onmousedown="Test.set_test_string(english_call_of_the_wild);">
+                            <input type="button" value="Twelve Thousand.." class="bBtime" id="ger"
+                                    onmousedown="Test.set_test_string(english_jules_verne);">
+                            <input type="button" value="French" class="bBtime" id="css"
+                                    onmousedown="Test.set_test_string(french_text);">
+                            <input type="button" value="Spanish" class="bBtime" id="c"
+                                    onmousedown="Test.set_test_string(spanish_text);">
+                        
+                        </div>
+                    </button>
+
+            </div>
+            <div class="props">
+                <button type="button" class="parachange" id="timebtn"><img src="icons/timer.png" alt="" width="22px"
+                        height="22px" id="iconglobe"><span
+                        style="display: inline-block;position: relative; bottom: 5px; font-size: 17px; font-family: 'Roboto Mono', monospace;">&nbsp;time</span>
+
+                        <div class="balloonBox">
+                            <input type="button" value="15"  class="bBtime" id="bB15"  onmousedown="Test.set_test_mode('timed', 15);">
+                            <input type="button" value="30"  class="bBtime" id="bB30"  onmousedown="Test.set_test_mode('timed', 30);">
+                            <input type="button" value="60"  class="bBtime" id="bB60"  onmousedown="Test.set_test_mode('timed', 60);">
+                            <input type="button" value="120" class="bBtime" id="bB120" onmousedown="Test.set_test_mode('timed', 120);">
+                            <input type="button" value="180" class="bBtime" id="bB180" onmousedown="Test.set_test_mode('timed', 180);">
+                            <input type="button" value="240" class="bBtime" id="bB240" onmousedown="Test.set_test_mode('timed', 240);">
+                            <input type="button" value="300" class="bBtime" id="bB300" onmousedown="Test.set_test_mode('timed', 300);">
+                        
+                        </div>
+                </button>
+            </div>
+
+            <!-- <div>
+                <label class="switch">
+                    <input type="checkbox" id="inputcheck">
+                    <span class="slider round"></span>
+                </label>
+            </div> -->
+        </div>
+        <div id="typing_window" contenteditable spellcheck="false"></div>
+        <div id="myPlot" style="width:1000px"></div>
+        <button id="rstbtn" type="button">↻
+            <div class="tooltip">
+                <span class="tooltiptext">Restart Test</span>
+            </div>
+        </button>
+
+    </div>
+
+    <div class="foot">
+        <h1>&copy; 2022 monkeytype. All rights reserved</h1>
+        <h1>created with ❤️ by JAGPD<sup>2</sup></h1>
+		
+    </div>
+
+
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script>
+        function setTimerDisplay(seconds){
+            let Timer = document.getElementById("setTime");
+			
+			let minutes_part = Math.floor(seconds/60);
+			let seconds_part = seconds % 60;
+
+            Timer.innerHTML = minutes_part + ":" + ((seconds_part < 10) ? "0" : "") + seconds_part;
+            
+        }
+        setTimerDisplay(400); 
+
+        // function clickingbtn()
+        // {
+        //     alert("15");    
+        // }
+	</script>   
+
+	<script src="script.js">
+    </script>
+
+    <script>
+        Test.set_test_string(english_alice);
+    </script>
+
+</body>
+
+</html>
